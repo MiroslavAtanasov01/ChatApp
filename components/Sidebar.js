@@ -4,20 +4,27 @@ import ChatIcon from '@material-ui/icons/Chat'
 import MoreVertIcon from '@material-ui/icons/morevert'
 import SearchIcon from '@material-ui/icons/search'
 import * as EmailValidator from "email-validator"
-import { auth } from '../firebase'
+import { auth, db } from '../firebase'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { useCollection } from 'react-firebase-hooks/firestore'
 
 function Sidebar() {
+    const [user] = useAuthState(auth)
+    const userChatRef = db.collection('chats').where('users', 'array-contains', user.email)
+    const [chatsSnapshots] = useCollection(userChatRef)
 
     const createChat = () => {
         const input = prompt('Please enter email address for the user you wish to chat with')
 
         if (!input) { return null }
 
-        if (EmailValidator.validate(input)) {
-            // add chat into the DB 'chats'
+        if (EmailValidator.validate(input) && !chatAlreadyExists(input) && input !== user.email) {
+            db.collection('chats').add({ users: [user.email, input] })
         }
     }
 
+    const chatAlreadyExists = (recipientEmail) =>
+        !!chatsSnapshots?.docs.find((chat) => chat.data().users.find((user) => user === recipientEmail)?.length > 0)
 
     return (
         <Container>
