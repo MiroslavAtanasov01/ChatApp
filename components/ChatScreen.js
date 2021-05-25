@@ -9,6 +9,7 @@ import AttachFileIcon from '@material-ui/icons/attachfile'
 import Message from './Message'
 import InsertEmoticonIcon from '@material-ui/icons/insertEmoticon'
 import MicIcon from '@material-ui/icons/Mic'
+import SendIcon from '@material-ui/icons/Send';
 import { useRef, useState } from 'react'
 import firebase from 'firebase'
 import getRecipientEmail from '../utils/getRecipientEmail'
@@ -114,18 +115,26 @@ function ChatScreen({ chat, messages }) {
             <InputContainer>
                 <InsertEmoticonIcon />
                 <Input value={input} onChange={e => setInput(e.target.value)} />
-                <button hidden disabled={!input} type='submit' onClick={sendMessage}>Send Message</button>
-                <MicIcon />
+                {input
+                    ? <SendButton disabled={!input} type='submit' onClick={sendMessage}><SendIcon /></SendButton>
+                    : <MicIcon />
+                }
             </InputContainer>
-        </Container>
+        </Container >
     )
 }
 
 export default ChatScreen
 
 const Container = styled.div`
-
 `
+const SendButton = styled.button`
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+`
+
 const Input = styled.input`
     flex: 1;
     outline: 0;
@@ -136,6 +145,7 @@ const Input = styled.input`
     margin-left: 15px;
     margin-right: 15px;
 `
+
 const InputContainer = styled.form`
     display: flex;
     align-items: center;
@@ -179,7 +189,7 @@ const HeaderIcons = styled.div`
 const MessageContainer = styled.div`
     padding: 30px;
     background-color: #e5ded8;
-    height: 90vh;
+    min-height: 90vh;
 `
 
 const EndOfMessage = styled.div`

@@ -41,7 +41,7 @@ function Sidebar() {
                 <SearchInput placeholder="Search in chats" />
             </Search>
 
-            <SideBarButton onClick={createChat}>Start a new chat</SideBarButton>
+            <SideBarButton onClick={createChat}>START A NEW CHAT</SideBarButton>
             {chatsSnapshots?.docs.map((chat) => (
                 <Chat key={chat.id} id={chat.id} users={chat.data().users} />
             ))}
@@ -75,8 +75,8 @@ const Search = styled.div`
 
 const SearchInput = styled.input`
     outline-width:0;
-    border:none;
-    flex:1;
+    border: none;
+    flex: 1;
 `
 
 const SideBarButton = styled(Button)`
@@ -88,9 +88,10 @@ const SideBarButton = styled(Button)`
 `
 
 const Header = styled.div`  
-    display:flex;
-    position:sticky;
+    display: flex;
+    position: sticky;
     top: 0;
+    z-index: 100;
     background-color: white;
     justify-content: space-between;
     align-items: center;
