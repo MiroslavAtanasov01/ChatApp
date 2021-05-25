@@ -13,9 +13,7 @@ function Login() {
             <Head>
                 <title>Login</title>
             </Head>
-
             <LoginContainer>
-                {/* <Logo src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c543.png" /> */}
                 <Logo src="https://facebookbrand.com/wp-content/uploads/2020/10/Logo_Messenger_NewBlurple-399x399-1.png?w=399&h=399" />
                 <Button variant="outlaned" onClick={singIn}>Sign in with Google</Button>
             </LoginContainer>
@@ -39,7 +37,7 @@ const LoginContainer = styled.div`
     align-items: center;
     background-color: white;
     border-radius: 5px;
-    box-shadow: 0px 4px 14px -3px rgba(0, 0, 0, 0.7)
+    box-shadow: 0px 4px 14px -3px rgba(0, 0, 0, 0.7);
 `
 
 const Logo = styled.img`
