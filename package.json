@@ -13,6 +13,7 @@
     "better-react-spinkit": "^2.0.4",
     "email-validator": "^2.0.4",
     "firebase": "^8.6.1",
+    "material-ui-icons": "^1.0.0-beta.36",
     "moment": "^2.29.1",
     "next": "10.2.0",
     "react": "17.0.2",

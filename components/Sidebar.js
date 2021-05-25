@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Avatar, Button, IconButton } from '@material-ui/core'
 import ChatIcon from '@material-ui/icons/Chat'
-import MoreVertIcon from '@material-ui/icons/morevert'
+// import MoreVertIcon from '@material-ui/icons/morevert'
 import SearchIcon from '@material-ui/icons/search'
 import * as EmailValidator from "email-validator"
 import { auth, db } from '../firebase'
@@ -33,7 +33,9 @@ function Sidebar() {
                 <UserAvatar src={user.photoURL} onClick={() => auth.signOut()} />
                 <IconsContainer>
                     <IconButton>   <ChatIcon /></IconButton>
-                    <IconButton>   <MoreVertIcon /></IconButton>
+                    <IconButton>
+                        {/* <MoreVertIcon /> */}
+                    </IconButton>
                 </IconsContainer>
             </Header>
             <Search>
