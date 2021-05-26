@@ -20,12 +20,12 @@ function Message({ user, message }) {
 export default Message
 
 const Container = styled.div`
-    
+     word-break: break-word;
 `
 
 const MessageElement = styled.p`
     width: fit-content;
-    padding: 15px;
+    padding: 5px 15px 0 15px;
     border-radius: 8px;
     margin: 10px;
     min-width: 60px;
