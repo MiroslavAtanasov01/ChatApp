@@ -4,16 +4,14 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { useCollection } from 'react-firebase-hooks/firestore'
 import { useRouter } from 'next/router'
 import { Avatar, IconButton } from '@material-ui/core'
-import MoreVertIcon from '@material-ui/icons/morevert'
-import AttachFileIcon from '@material-ui/icons/attachfile'
 import Message from './Message'
-import InsertEmoticonIcon from '@material-ui/icons/insertEmoticon'
-import MicIcon from '@material-ui/icons/Mic'
-import SendIcon from '@material-ui/icons/Send';
 import { useRef, useState } from 'react'
 import firebase from 'firebase'
 import getRecipientEmail from '../utils/getRecipientEmail'
 import TimeAgo from 'timeago-react'
+import { BsThreeDotsVertical, BsFillMicFill } from "react-icons/bs"
+import { MdAttachFile, MdInsertEmoticon, MdSend } from 'react-icons/md'
+
 
 function ChatScreen({ chat, messages }) {
     const router = useRouter()
@@ -101,10 +99,10 @@ function ChatScreen({ chat, messages }) {
                 </HeaderInfo>
                 <HeaderIcons>
                     <IconButton>
-                        <AttachFileIcon />
+                        <MdAttachFile />
                     </IconButton>
                     <IconButton>
-                        <MoreVertIcon />
+                        <BsThreeDotsVertical />
                     </IconButton>
                 </HeaderIcons>
             </Header>
@@ -113,11 +111,11 @@ function ChatScreen({ chat, messages }) {
                 <EndOfMessage ref={endOfMessageRef} />
             </MessageContainer>
             <InputContainer>
-                <InsertEmoticonIcon />
+                <MdInsertEmoticon size={25} />
                 <Input value={input} onChange={e => setInput(e.target.value)} />
                 {input
-                    ? <SendButton disabled={!input} type='submit' onClick={sendMessage}><SendIcon /></SendButton>
-                    : <MicIcon />
+                    ? <SendButton disabled={!input} type='submit' onClick={sendMessage}><MdSend size={25} /></SendButton>
+                    : <BsFillMicFill size={25} />
                 }
             </InputContainer>
         </Container >

@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import { Avatar, Button, IconButton } from '@material-ui/core'
-import ChatIcon from '@material-ui/icons/Chat'
-import MoreVertIcon from '@material-ui/icons/morevert'
-import SearchIcon from '@material-ui/icons/search'
+import { BsThreeDotsVertical } from "react-icons/bs"
+import { MdChat } from 'react-icons/md'
+import { BiSearchAlt2 } from 'react-icons/bi'
 import * as EmailValidator from "email-validator"
 import { auth, db } from '../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
@@ -32,12 +32,16 @@ function Sidebar() {
             <Header>
                 <UserAvatar src={user.photoURL} onClick={() => auth.signOut()} />
                 <IconsContainer>
-                    <IconButton>   <ChatIcon /></IconButton>
-                    <IconButton>   <MoreVertIcon /></IconButton>
+                    <IconButton>
+                        <MdChat />
+                    </IconButton>
+                    <IconButton>
+                        <BsThreeDotsVertical />
+                    </IconButton>
                 </IconsContainer>
             </Header>
             <Search>
-                <SearchIcon />
+                <BiSearchAlt2 size={23} />
                 <SearchInput placeholder="Search in chats" />
             </Search>
 
