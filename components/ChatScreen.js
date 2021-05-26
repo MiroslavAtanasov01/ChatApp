@@ -11,6 +11,7 @@ import getRecipientEmail from '../utils/getRecipientEmail'
 import TimeAgo from 'timeago-react'
 import { BsThreeDotsVertical, BsFillMicFill } from "react-icons/bs"
 import { MdAttachFile, MdInsertEmoticon, MdSend } from 'react-icons/md'
+import { useEffect } from 'react'
 
 
 function ChatScreen({ chat, messages }) {
@@ -43,6 +44,10 @@ function ChatScreen({ chat, messages }) {
         }
     }
 
+    useEffect(() => {
+        scrollToBottom()
+    }, [showMessages])
+
     const [recipientSnapshot] = useCollection(
         db.collection('users').where('email', '==', getRecipientEmail(chat.users, user))
     )
@@ -72,7 +77,6 @@ function ChatScreen({ chat, messages }) {
         })
 
         setInput('')
-        scrollToBottom()
     }
 
     const recipient = recipientSnapshot?.docs?.[0]?.data()
@@ -105,7 +109,7 @@ function ChatScreen({ chat, messages }) {
                     </IconButton>
                 </HeaderIcons>
             </Header>
-            <MessageContainer>
+            <MessageContainer >
                 {showMessages()}
                 <EndOfMessage ref={endOfMessageRef} />
             </MessageContainer>
@@ -191,11 +195,10 @@ const HeaderIcons = styled.div`
 `
 
 const MessageContainer = styled.div`
-    padding: 30px;
+    padding: 55px 30px 5px 30px;
     background-color: #e5ded8;
     min-height: 90vh;
 `
 
 const EndOfMessage = styled.div`
-    margin-bottom: 50px
 `

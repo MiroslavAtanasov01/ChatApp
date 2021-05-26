@@ -17,7 +17,6 @@ function Chat({ id, users, email }) {
         router.push(`/chat/${id}`)
     ]
 
-    console.log(recipientEmail)
     return (
         <Container onClick={enterChat} email={email} recipientEmail={recipientEmail}>
             { recipient
