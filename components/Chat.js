@@ -6,7 +6,7 @@ import { auth, db } from '../firebase'
 import { useCollection } from 'react-firebase-hooks/firestore'
 import { useRouter } from 'next/router'
 
-function Chat({ id, users }) {
+function Chat({ id, users, email }) {
     const router = useRouter()
     const [user] = useAuthState(auth)
     const [recipientSnapshot] = useCollection(db.collection('users').where('email', '==', getRecipientEmail(users, user)))
@@ -17,8 +17,9 @@ function Chat({ id, users }) {
         router.push(`/chat/${id}`)
     ]
 
+    console.log(recipientEmail)
     return (
-        <Container onClick={enterChat}>
+        <Container onClick={enterChat} email={email} recipientEmail={recipientEmail}>
             { recipient
                 ? <UserAvatar src={recipient?.photoURL} />
                 : <UserAvatar>{recipientEmail[0]}</UserAvatar>
@@ -36,10 +37,12 @@ const Container = styled.div`
     align-items: center;
     padding: 15px;
     word-break: break-word;
+    background-color: ${props => props.email === props.recipientEmail ? '#e9eaeb' : 'white'};
     
     :hover {
-       background-color: #e9eaeb
+       background-color: #f2f2f2;
     }
+ 
 `
 
 const UserAvatar = styled(Avatar)`

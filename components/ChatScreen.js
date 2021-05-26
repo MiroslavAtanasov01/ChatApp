@@ -112,7 +112,7 @@ function ChatScreen({ chat, messages }) {
             </MessageContainer>
             <InputContainer>
                 <MdInsertEmoticon size={25} />
-                <Input value={input} onChange={e => setInput(e.target.value)} />
+                <Input placeholder='Type a message' value={input} onChange={e => setInput(e.target.value)} />
                 {input
                     ? <SendButton disabled={!input} type='submit' onClick={sendMessage}><MdSend size={25} /></SendButton>
                     : <BsFillMicFill size={25} />
@@ -125,9 +125,10 @@ function ChatScreen({ chat, messages }) {
 export default ChatScreen
 
 const Container = styled.div`
+ border-left: 1px solid lightgray;
 `
 const SendButton = styled.button`
-    background-color: white;
+    background-color: #e9eaeb;
     border: none;
     cursor: pointer;
     padding: 0;
@@ -137,31 +138,37 @@ const Input = styled.input`
     flex: 1;
     outline: 0;
     border: none;
-    border-radius: 10px;
-    background-color: whitesmoke;
-    padding: 20px;
+    border-radius: 30px;
+    background-color: white;
+    padding: 15px;
     margin-left: 15px;
     margin-right: 15px;
+    
+    ::placeholder,
+    ::-webkit-input-placeholder {
+    color: gray;
+    font-size: 14px
+  }
 `
 
 const InputContainer = styled.form`
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding: 10px 15px 10px 15px;
     position: sticky;
     bottom: 0;
-    background-color: white;
+    background-color: #f2f2f2;
     z-index: 100;
 `
 
 const Header = styled.div`
     position: sticky;
-    background-color: white;
+    background-color: #f2f2f2;
     z-index: 100;
     top: 0;
     display: flex;
     padding: 11px;
-    height: 80px;
+    height: 70px;
     align-items: center;
     border-bottom: 1px solid whitesmoke;
 `

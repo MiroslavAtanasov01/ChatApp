@@ -9,7 +9,7 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { useCollection } from 'react-firebase-hooks/firestore'
 import Chat from './Chat'
 
-function Sidebar() {
+function Sidebar({ email }) {
     const [user] = useAuthState(auth)
     const userChatRef = db.collection('chats').where('users', 'array-contains', user.email)
     const [chatsSnapshots] = useCollection(userChatRef)
@@ -47,7 +47,7 @@ function Sidebar() {
 
             <SideBarButton onClick={createChat}>START A NEW CHAT</SideBarButton>
             {chatsSnapshots?.docs.map((chat) => (
-                <Chat key={chat.id} id={chat.id} users={chat.data().users} />
+                <Chat key={chat.id} id={chat.id} users={chat.data().users} email={email} />
             ))}
         </Container>
     )
@@ -57,7 +57,6 @@ export default Sidebar
 
 const Container = styled.div`
     flex: 0.45;
-    border-right: 1px solid whitesmoke;
     height: 100vh;
     min-width: 300px;
     max-width: 350px;
@@ -96,11 +95,11 @@ const Header = styled.div`
     position: sticky;
     top: 0;
     z-index: 100;
-    background-color: white;
+    background-color: #f2f2f2;
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    height: 80px;
+    height: 70px;
     border-bottom: 1px solid whitesmoke;
 `
 const UserAvatar = styled(Avatar)`
