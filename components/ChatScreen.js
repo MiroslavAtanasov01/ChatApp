@@ -57,7 +57,6 @@ function ChatScreen({ chat, messages }) {
     const sendMessage = (e) => {
         e.preventDefault()
 
-        // update last seen
         db.collection('users').doc(user.uid).set(
             {
                 lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
