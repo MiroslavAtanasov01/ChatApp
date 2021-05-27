@@ -8,11 +8,14 @@ import { auth, db } from '../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useCollection } from 'react-firebase-hooks/firestore'
 import Chat from './Chat'
+import { useState } from 'react'
+import getRecipientEmail from '../utils/getRecipientEmail'
 
 function Sidebar({ email }) {
     const [user] = useAuthState(auth)
     const userChatRef = db.collection('chats').where('users', 'array-contains', user.email)
     const [chatsSnapshots] = useCollection(userChatRef)
+    const [search, setSearch] = useState('')
 
     const createChat = () => {
         const input = prompt('Please enter email address for the user you wish to chat with')
@@ -42,11 +45,17 @@ function Sidebar({ email }) {
             </Header>
             <Search>
                 <BiSearchAlt2 size={23} />
-                <SearchInput placeholder="Search in chats" />
+                <SearchInput placeholder="Search in chats" onChange={(e) => setSearch(e.target.value)} />
             </Search>
-
             <SideBarButton onClick={createChat}>START A NEW CHAT</SideBarButton>
-            {chatsSnapshots?.docs.map((chat) => (
+            {chatsSnapshots?.docs.filter((chat) => {
+                const recipientEmail = getRecipientEmail(chat.data().users, user)
+                if (search === '') {
+                    return chat
+                } else if (recipientEmail.toLowerCase().includes(search.toLowerCase())) {
+                    return chat
+                }
+            }).map((chat) => (
                 <Chat key={chat.id} id={chat.id} users={chat.data().users} email={email} />
             ))}
         </Container>
