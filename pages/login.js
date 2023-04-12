@@ -15,7 +15,7 @@ function Login() {
             </Head>
             <LoginContainer>
                 <Logo src="https://facebookbrand.com/wp-content/uploads/2020/10/Logo_Messenger_NewBlurple-399x399-1.png?w=399&h=399" />
-                <Button variant="outlaned" onClick={singIn}>Sign in with Google</Button>
+                <Button variant="outlined" onClick={singIn}>Sign in with Google</Button>
             </LoginContainer>
         </Container>
     )
