@@ -14,7 +14,7 @@ export default function Home() {
       <MainPage>
         <MainPageContainer>
           <Logo src="https://facebookbrand.com/wp-content/uploads/2020/10/Logo_Messenger_NewBlurple-399x399-1.png?w=399&h=399" />
-          <Text>CHATAPP BY MIROSLAW</Text>
+          <Text>CHATAPP BY MIROSLAV</Text>
         </MainPageContainer>
       </MainPage>
     </Container>
