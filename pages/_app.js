@@ -1,31 +1,35 @@
-import '../styles/globals.css'
-import { useEffect } from 'react'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { auth, db } from '../firebase'
-import Login from '../pages/login'
-import Loading from '../components/Loading'
-import firebase from 'firebase'
+import "../styles/globals.css";
+import { useEffect } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, db } from "../firebase";
+import Login from "../pages/login";
+import Loading from "../components/Loading";
+import firebase from "firebase";
 
 function MyApp({ Component, pageProps }) {
-  const [user, loading] = useAuthState(auth)
-
+  const [user, loading] = useAuthState(auth);
+  //sasa
   useEffect(() => {
     if (user) {
-      db.collection('users').doc(user.uid).set(
+      db.collection("users").doc(user.uid).set(
         {
           email: user.email,
           lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
           photoURL: user.photoURL,
         },
         { merge: true }
-      )
+      );
     }
-  }, [user])
+  }, [user]);
 
-  if (loading) { return <Loading /> }
-  if (!user) { return <Login /> }
+  if (loading) {
+    return <Loading />;
+  }
+  if (!user) {
+    return <Login />;
+  }
 
-  return <Component {...pageProps} />
+  return <Component {...pageProps} />;
 }
 
-export default MyApp
+export default MyApp;
