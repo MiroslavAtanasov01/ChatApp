@@ -8,7 +8,6 @@ import firebase from "firebase";
 
 function MyApp({ Component, pageProps }) {
   const [user, loading] = useAuthState(auth);
-  //sasa
   useEffect(() => {
     if (user) {
       db.collection("users").doc(user.uid).set(
